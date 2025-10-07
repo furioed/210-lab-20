@@ -14,6 +14,8 @@ class Chair {
 private:
     int legs;
     double * prices;
+    static int count; // chair numbering
+    int id;
 public:
     // constructors
     Chair() {
@@ -23,12 +25,14 @@ public:
         const int MIN = 10000, MAX = 99999;
         for (int i = 0; i < SIZE; i++)
             prices[i] = (rand() % (MAX - MIN + 1) + MIN) / 100.0; // random price
+        id = ++count;
     }
 
     Chair(int l, double p1, double p2, double p3) { // two-parameter constructor added
         prices = new double[SIZE];
         legs = l;
         prices[0] = p1; prices[1] = p2; prices[2] = p3;
+        id = ++count;
     }
 
     // setters and getters
@@ -46,7 +50,7 @@ public:
     }
 
     void print() {
-        cout << "CHAIR DATA - legs: " << legs << endl;
+        cout << "CHAIR DATA " << id << " - legs: " << legs << endl;
         cout << "Price history: " ;
         for (int i = 0; i < SIZE; i++)
             cout << prices[i] << " ";
@@ -54,6 +58,8 @@ public:
         cout << endl << endl;
     }
 };
+
+int Chair::count = 0;
 
 int main() {
     cout << fixed << setprecision(2);
