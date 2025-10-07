@@ -24,11 +24,11 @@ public:
         for (int i = 0; i < SIZE; i++)
             prices[i] = (rand() % (MAX - MIN + 1) + MIN) / 100.0; // random price
     }
-    Chair(int l) {
+
+    Chair(int l, double p1, double p2, double p3) { // two-parameter constructor added
         prices = new double[SIZE];
         legs = l;
-        for (int i = 0; i < SIZE; i++)
-            prices[i] = 0;
+        prices[0] = p1; prices[1] = p2; prices[2] = p3;
     }
 
     // setters and getters
@@ -63,8 +63,7 @@ int main() {
     chairPtr->print(); // random default chair
 
     //creating dynamic chair object with constructor
-    Chair *livingChair = new Chair(3);
-    livingChair->setPrices(525.25, 434.34, 252.52);
+    Chair *livingChair = new Chair(3, 525.25, 434.34, 252.52);
     livingChair->print(); // fixed price chair
     delete livingChair;
     livingChair = nullptr;
